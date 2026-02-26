@@ -2,7 +2,7 @@ name: Build LaTeX document
 on:
   push:
     branches:
-      - master
+      - main
 concurrency: 
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -23,8 +23,8 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: CyberneticAvatarHumanTelepresence.tex
-          post_compile: "latexmk -c && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed.pdf CyberneticAvatarHumanTelepresence.pdf"
+          root_file: main.tex
+          post_compile: "latexmk -c && gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed.pdf main.pdf"
       - name: Upload PDF file
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
